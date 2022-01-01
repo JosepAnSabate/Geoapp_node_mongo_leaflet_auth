@@ -1,5 +1,29 @@
 
+<nav class="navbar">
+    <div class="brand-title">Geoapp</div>
+    <a href="#" class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </a>
+    <div class="navbar-links">
+        <ul>
+            <li><a href="/">My Position</a></li>
+            <li><a href="/positions/new">New Position</a></li>
 
+            <!-- <li><a href="/about">About</a></li> -->
+            <% if(!loggedIn) { %>
+             <li><a href="/auth/login">Login</a></li>
+
+             <li><a href="/auth/register">Register</a></li>
+            <% } %>
+            <% if(loggedIn) { %>
+             <li><a href="/auth/logout">Logout</a></li>
+            <% } %>
+        </ul>
+    </div>
+</nav>
+<!-- 
 <a href="/">Index</a>
 <br><br>
 
@@ -24,4 +48,4 @@
     <a href="/auth/logout">Logout</a>
     <br> <br>
 <% } %>
-
+ -->

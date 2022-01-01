@@ -2,21 +2,6 @@
 <body>
   
     <%- include('layouts/navbar'); -%>
-    <% if(loggedIn) { %>
-      <a href="/positions/user/<%= sessionUserId%>">
-          <!-- blogposts[2].userid._id ||req.session.userId, => sessionUserId -->
-        My Posts
-      </a>
-      <br> <br>
-      <% } %>
-
-      <% if(loggedIn) { %>
-        <a href="/positions/all">
-            <!-- blogposts[2].userid._id ||req.session.userId, => sessionUserId -->
-          All Posts
-        </a>
-        <br> <br>
-        <% } %>
 
  <!-- Main Content -->
  <div class="containe my-3">
