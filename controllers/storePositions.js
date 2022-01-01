@@ -13,7 +13,7 @@ module.exports = async (req, res) =>{
                 })
                 res.redirect('/')
             }) 
-    } else {
+    } else {  //si no hi ha imatges
         await BlogPost.create({
             ...req.body, 
             userid: req.session.userId})

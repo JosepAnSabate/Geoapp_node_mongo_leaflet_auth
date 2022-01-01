@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "Josep",
   "license": "MIT",
@@ -17,6 +18,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-session": "^1.17.2",
+    "mapbox-gl": "^2.6.1",
     "mongoose": "^6.1.2",
     "mongoose-unique-validator": "^3.0.0",
     "path": "^0.12.7"

@@ -1,6 +1,6 @@
 <%- include('layouts/header'); -%>
 <body>
-    <h1>Index</h1>
+  
     <%- include('layouts/navbar'); -%>
     <% if(loggedIn) { %>
       <a href="/positions/user/<%= sessionUserId%>">
@@ -19,6 +19,10 @@
         <% } %>
 
  <!-- Main Content -->
+ <div class="containe my-3">
+   <h1 class="display-4 text-center title-logo"><i class="fas fa-map-marked mr4"></i> Les Meves Posicions</h1>
+  <div id="map" style="width: 100%; height: 600px; border-radius: 5px;"></div>
+  </div>
  <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
@@ -48,5 +52,6 @@
   <hr>
 
 <%- include('layouts/scripts'); -%>
+<script src="/js/mapa.js"></script>
 </body>
 </html>

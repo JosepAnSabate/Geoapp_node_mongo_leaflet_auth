@@ -20,7 +20,7 @@ const authMiddleware = require("./middleware/authMiddleware");
 const redirectIfAuthenticatedMiddleware =require("./middleware/redirectIfAuthenticatedMiddleware");
 
 
-mongoose.connect('mongodb://localhost/mydatabase', {
+mongoose.connect('mongodb://localhost/mygeodatabase', {
     useNewUrlParser: true,
     useUnifiedTopology: true })
     .then(() => console.log('DataBase connected'))

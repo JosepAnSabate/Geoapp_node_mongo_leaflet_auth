@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const BlogPostSchema = new Schema({ //schema represents how a collection looks like on atles
     title: String,
-    body:String,
+    body:String, // millor anomenar description
     userid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',  //referencia a User Model.
@@ -13,7 +13,16 @@ const BlogPostSchema = new Schema({ //schema represents how a collection looks l
         type: Date,
         default: new Date()
     },
-    image: String
+    image: String,
+    location: {
+        type: {
+          enum: ['Point'], 
+        },
+        coordinates: {
+          type: [Number],
+          index: '2dsphere' // supports queries that calculate geometries
+        }
+      }
 });
 
 //blogPost is a collection on mongo
