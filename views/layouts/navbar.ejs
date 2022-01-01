@@ -1,0 +1,26 @@
+
+
+<a href="/">Index</a>
+<br><br>
+
+<a href="/about">About</a>
+<br> <br>
+
+
+<% if(loggedIn) { %>
+<a href="/positions/new">New Post</a>
+<br> <br>
+<% } %>
+
+<% if(!loggedIn) { %>
+<a href="/auth/register">Register</a>
+<br><br>
+
+<a href="/auth/login">Login</a>
+<br><br>
+<% } %>
+
+<% if(loggedIn) { %>
+    <a href="/auth/logout">Logout</a>
+    <br> <br>
+<% } %>

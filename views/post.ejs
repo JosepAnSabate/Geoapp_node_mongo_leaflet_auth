@@ -1,0 +1,48 @@
+
+  <%- include('layouts/header');-%>
+
+<body>
+
+
+  <a href="/">Index</a>
+  <!-- Page Header -->
+  <header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1 id="currenttitle"><%= blogpost.title %></h1>
+            <h2 class="subheading"><%= blogpost.body %></h2>
+            <h3 id="idpost"><%= blogpost._id %></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <img src="<%= blogpost.image %>" style="width:250px;height:300px;">
+  <br> <br> <br>
+  <a class="delete" data-doc="<%= blogpost._id %>"><button  type="button" class="btn btn-danger" 
+    data-toggle="modal">Elimina </button></a> 
+  <!-- sataset o data-id per passar info a js -->
+  <button onclick="openForm()" type="button" class="btn btn-warning" 
+          data-toggle="modal" data-target="">Edita </button>
+
+  <div class="form-popup" id="myFormEdit">
+    <form id="edit" data-id="<%= blogpost._id %>" class="form-container">
+      <label><b>Nou títol: </b></label>
+      <input id="new-name" type="text" placeholder="<%= blogpost.title %>" required>
+  
+      <label><b>Nova descripció: </b></label>
+      <input id="new-description" type="text" placeholder="<%= blogpost.body %>">
+  
+      <button data-id="<%= blogpost._id %>" class="btn">Edita</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Tanca</button>
+      </form>
+  </div>
+   <%- include('layouts/scripts');-%> 
+   <script src="/js/deletePositions.js"></script>
+   <script src="/js/updatePositions.js"></script>
+
+</body>
+</html>

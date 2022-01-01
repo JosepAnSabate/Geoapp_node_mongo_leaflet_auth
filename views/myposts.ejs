@@ -1,0 +1,37 @@
+<%- include('layouts/header'); -%>
+<body>
+    <h1>My posts</h1>
+    <%- include('layouts/navbar'); -%>
+
+ <!-- Main Content -->
+ <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <% for (var i = 0; i < myblogpost.length; i++){ %>
+          <div class="post-preview">
+            <a href="/position/<%= myblogpost[i]._id%>">
+              <h2 class="post-title">
+                <%= myblogpost[i].title %>
+              </h2>
+              <h3 class="post-subtitle">
+                <%= myblogpost[i].body %>
+              </h3>
+            </a> 
+            <p class="post-meta">
+             Posted by <%= myblogpost[i].userid.username %> on <%= myblogpost[i].datePosted.toDateString() %></p>     
+          </div>
+          <hr>
+        <%}%>
+        <!-- Pager -->
+        <!-- <div class="clearfix">
+          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+<%- include('layouts/scripts'); -%>
+</body>
+</html>

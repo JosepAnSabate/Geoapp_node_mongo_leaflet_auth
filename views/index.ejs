@@ -1,0 +1,52 @@
+<%- include('layouts/header'); -%>
+<body>
+    <h1>Index</h1>
+    <%- include('layouts/navbar'); -%>
+    <% if(loggedIn) { %>
+      <a href="/positions/user/<%= sessionUserId%>">
+          <!-- blogposts[2].userid._id ||req.session.userId, => sessionUserId -->
+        My Posts
+      </a>
+      <br> <br>
+      <% } %>
+
+      <% if(loggedIn) { %>
+        <a href="/positions/all">
+            <!-- blogposts[2].userid._id ||req.session.userId, => sessionUserId -->
+          All Posts
+        </a>
+        <br> <br>
+        <% } %>
+
+ <!-- Main Content -->
+ <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <% for (var i = 0; i < blogposts.length; i++){ %>
+          <div class="post-preview">
+            <a href="/position/<%= blogposts[i]._id%>">
+              <h2 class="post-title">
+                <%= blogposts[i].title %>
+              </h2>
+              <h3 class="post-subtitle">
+                <%= blogposts[i].body %>
+              </h3>
+            </a> 
+            <p class="post-meta">
+             Posted by <%= blogposts[i].userid.username %> on <%= blogposts[i].datePosted.toDateString() %></p>     
+          </div>
+          <hr>
+        <%}%>
+        <!-- Pager -->
+        <!-- <div class="clearfix">
+          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+<%- include('layouts/scripts'); -%>
+</body>
+</html>
