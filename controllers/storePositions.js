@@ -4,6 +4,7 @@ const path = require('path')
 module.exports = async (req, res) =>{
     if ((req.files && req.files.image)){   //https://stackoverflow.com/questions/56955171/cannot-read-property-image-of-null
         let image = req.files.image
+        console.log("storepositions")
         image.mv(path.resolve(__dirname, '..','public/img',image.name),
             async (error)=>{
                 await BlogPost.create({

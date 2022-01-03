@@ -16,6 +16,7 @@ const BlogPostSchema = new Schema({ //schema represents how a collection looks l
     image: String,
     location: {
         type: {
+          type: String,
           enum: ['Point'], 
         },
         coordinates: {

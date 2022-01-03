@@ -11,30 +11,30 @@
       <div class="col-lg-8 col-md-10 mx-auto">   
         <h2>Create new post</h2>     
         <form action="/positions/store" method="POST" enctype="multipart/form-data">                                                 
-          <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-              <label>Title</label>
-              <input type="text" class="form-control" placeholder="Title" id="title" name="title">  
-                          <!-- name from model -->
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Title</label>
+                <input type="text" class="form-control" placeholder="Title" id="title" name="title">  
+                            <!-- name from model -->
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-              <label>Description</label>
-              <textarea rows="5" class="form-control" id="body" name="body"></textarea>
-              <!-- <p class="help-block text-danger"></p> -->
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Description</label>
+                <textarea rows="5" class="form-control" id="body" name="body"></textarea>
+                <!-- <p class="help-block text-danger"></p> -->
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-              <label>Image</label>
-              <input type="file" class="form-control" id="image" name="image">              
-            </div>
-          </div>         
-          <br>
-          <div id="success"></div>
-          <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
-          <!-- type="submit" sent the form -->
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Image</label>
+                <input type="file" class="form-control" id="image" name="image">              
+              </div>
+            </div>         
+            <br>
+            <div id="success"></div>
+            <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+            <!-- type="submit" sent the form -->
         </form>
       </div>
     </div>
