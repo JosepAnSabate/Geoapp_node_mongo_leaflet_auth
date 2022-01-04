@@ -27,7 +27,7 @@ function  init(data) {
       controlCapes = L.control.layers(mapaBase, null, {collapsed: false});
      controlCapes.addTo(map)
     
-    // get geojson from postgis//
+    // get geojson from mongodb//
     // Fetch stores from API
     async function getPoints() {
       const res = await fetch('/');
@@ -96,7 +96,7 @@ function  init(data) {
     const tempMarker = drawnItems.addLayer(e.layer);
   
     const popupContent = 
-    '<form id="myForm" class="form"  enctype="multipart/form-data">'+
+    '<form action="/positions/store" method="POST" id="myForm" class="form"  enctype="multipart/form-data">'+
       
         '<label class="control-label col-sm-5 form-label"><b>Title: </b></label>'+
         '<textarea class="form-control form-text" rows="1" id="title" name="title"></textarea>'+
@@ -122,50 +122,5 @@ function  init(data) {
           keepInView: true,
           closeButton: false
           }).openPopup();
-
-    let title = document.getElementById('title')
-    let description = document.getElementById("body")
-    let lat = document.getElementById('lat')
-    let lng = document.getElementById('lng')
-    let img = document.getElementById('image')
-    
-    myForm.addEventListener('submit', async(e)=>{
-      e.preventDefault(); // refresh the page when its submitted
-      //console.log("Submitted");
-      
-      let formData = { //js object
-          title: title.value,
-          body: description.value,
-          location: {
-            type: "Point",
-            coordinates: [lng.value , lat.value]
-         },
-          //image: img
-      }
-
-      console.log(description.value)
-      try {
-        //const body = { name, description, geom };
-        //http request using fetch
-        const response = await fetch("http://localhost:5000/positions/store", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" }, //http header fields => application/json if the http response is json data   https://www.youtube.com/watch?v=iYM2zFP3Zn0
-          body: JSON.stringify( { 
-            title: title.value,
-            body: description.value,
-        //     location: {
-        //       type: "Point",
-        //       coordinates: [lng , lat]
-        //    },
-            //image: img
-        }) 
-        });
-       console.log( response);
-     // window.location = "/"; // refresh and show the changes
-      } catch (err) {
-        console.error(err.message);
-      }  
-    })
-  });
    
-}
+})}
