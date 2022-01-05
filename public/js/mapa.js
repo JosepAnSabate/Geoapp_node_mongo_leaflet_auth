@@ -38,8 +38,8 @@ function  init(data) {
 
      // map create new arrays from other arrays
      const positionsGj = data.map(position => {
-       console.log("HOLA X 5")
-       console.log(position.title)
+      // console.log("HOLA X 5")
+       //console.log(position.title)
       return {
           type: 'Feature',
           geometry: {
@@ -48,7 +48,7 @@ function  init(data) {
               },
           properties: {
             title: position.title,
-         //   body: position.body,
+            body: position.body,
             datePosted: position.datePosted,
             user: position.userid.username,
             image: position.image
@@ -60,7 +60,7 @@ function  init(data) {
  
 // Load map with stores
 function loadMap(positionsGj) {
-  console.log("adeu")
+ // console.log("adeu")
     L.geoJSON({
                    type: 'FeatureCollection',
                    features: positionsGj
@@ -77,40 +77,43 @@ function loadMap(positionsGj) {
                   //           }
                   //       }
                   // ]
+        }, {
+          onEachFeature: function (feature, layer) {
+            let dataPost = feature.properties.datePosted
+            console.log(dataPost)
+            console.log(typeof feature.properties.datePosted)
+            layer.bindPopup('<h4 class="popup">'+feature.properties.title+`</h4>
+              <hr class="popup">
+              <p class="popup"><span class="popup-description">Description: </span>`+feature.properties.body+`</p>
+              <p class="popup"><span class="popup-description">Per: </span>`+feature.properties.user+
+              `<p class="popup"><span class="popup-description">Creat al: </span>`+feature.properties.datePosted+`</p>
+              <p id="popupcoord">Lat: `+feature.geometry.coordinates[1]+', Long:'+
+              feature.geometry.coordinates[0]+'</p>'
+            );
+            // data outside map
+            //document.getElementById("stats").innerHTML = feature.properties.name
+        }
         }).addTo(map);
     }
-   
     getPoints();
 
+    ///////////////////////////
+    // EXEMPLE add geojson, add marker
     //var marker = L.marker([42.140, 1.706]).addTo(map); // coordenades al reves k geojson
-    L.geoJSON().addTo(map);
-      var myLayer = L.geoJSON({
-        "type": "Feature",
-        "properties": {
-            "name": "Coors Field",
-            "amenity": "Baseball Stadium"
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [ 1.706, 42.240] //coordenades al reves k al marker
-        }
-      }).addTo(map);
+    // L.geoJSON().addTo(map);
+    //   var myLayer = L.geoJSON({
+    //     "type": "Feature",
+    //     "properties": {
+    //         "name": "Coors Field",
+    //         "amenity": "Baseball Stadium"
+    //     },
+    //     "geometry": {
+    //         "type": "Point",
+    //         "coordinates": [ 1.706, 42.240] //coordenades al reves k al marker
+    //     }
+    //   }).addTo(map);
       //myLayer.addData(geojsonFeature);
-
-     
-    // L.geoJSON(data, {
-    //   onEachFeature: function (feature, layer) {
-    //     layer.bindPopup('<h4 class="popup">'+feature.properties.title+`</h4>
-    //       <hr class="popup">
-    //       <p class="popup"><span class="popup-description">Description: </span>`+feature.properties.body+`</p>
-    //       <p id="popupcoord">Lat: `+feature.geometry.coordinates[1]+', Long:'+
-    //       feature.geometry.coordinates[0]+'</p>'
-    //     );
-    // }
-    // }).addTo(map);
-    
-   
-
+    ///////////////////////////
      // show your current location
     L.control.locate().addTo(map);
     // add map scale
