@@ -5,7 +5,7 @@ module.exports = async (req,res) => {
     const id = req.params.id;//post;
     const title = req.title;
     const body = req.body;
-    const opts = { new: true };
+    
 
     console.log(id)
     console.log('body', body)
@@ -28,24 +28,3 @@ module.exports = async (req,res) => {
         })
     }
 }
-//     //const blogpost =
-//      await BlogPost.findOneAndUpdate({ "_id": id }, { "$set": { "title": title, "body": body}}
-//      , opts)
-//         .then(result => {
-//             res.json({ redirect: '/'})
-//         })
-//         .catch(err => {
-//             console.log(err);                                                                
-//         })
-
-// }
-//     console.log(blogpost);
-//    // res.send(blogpost);
-//     } catch (error) {
-//         console.log(error);
-//     }
-//     res.render('post')
-//   //  , {
-//   //      blogpost
-//   //  })
-//}

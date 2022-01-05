@@ -7,6 +7,7 @@ module.exports = async (req,res) => {
             const blogposts = await BlogPost.find({userid: sessionUserId}).populate('userid')
             console.log(req.session)
            
+           
             res.render('index', {
                 blogposts,
                 sessionUserId

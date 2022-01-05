@@ -27,26 +27,89 @@ function  init(data) {
       controlCapes = L.control.layers(mapaBase, null, {collapsed: false});
      controlCapes.addTo(map)
     
-    // get geojson from mongodb//
-    // Fetch stores from API
-    async function getPoints() {
-      const res = await fetch('/');
-      const data = await res.json(); // convert to json
+  // get geojson from mongodb//
+  // Fetch stores from API
+  async function getPoints() {   
+     // fetch position from api 
+     const res = await  fetch(`/geojson/user`);
+     const data = await res.json(); // convert to json
       
-      console.log(data);
-      L.geoJSON(data, {
-        onEachFeature: function (feature, layer) {
-          layer.bindPopup('<h4 class="popup">'+feature.properties.title+`</h4>
-            <hr class="popup">
-            <p class="popup"><span class="popup-description">Description: </span>`+feature.properties.body+`</p>
-            <p id="popupcoord">Lat: `+feature.geometry.coordinates[1]+', Long:'+
-            feature.geometry.coordinates[0]+'</p>'
-          );
+     console.log(data)
+
+     // map create new arrays from other arrays
+     const positionsGj = data.map(position => {
+       console.log("HOLA X 5")
+       console.log(position.title)
+      return {
+          type: 'Feature',
+          geometry: {
+              type: 'Point',
+              coordinates: [position.location.coordinates[0], position.location.coordinates[1]]
+              },
+          properties: {
+            title: position.title,
+         //   body: position.body,
+            datePosted: position.datePosted,
+            user: position.userid.username,
+            image: position.image
+          }
       }
-      }).addTo(map);
-     
-    };
+  });
+  loadMap(positionsGj);
+};
+ 
+// Load map with stores
+function loadMap(positionsGj) {
+  console.log("adeu")
+    L.geoJSON({
+                   type: 'FeatureCollection',
+                   features: positionsGj
+                    //features: [
+                    //    {
+                  //           type: 'Feature',
+                  //           geometry: {
+                  //               type: 'Point',
+                  //               coordinates: [1.111318, 41.337839]
+                  //           },
+                  //           properties: {
+                  //               storeId: '0001',
+                  //      //         icon: 'shop'
+                  //           }
+                  //       }
+                  // ]
+        }).addTo(map);
+    }
+   
     getPoints();
+
+    //var marker = L.marker([42.140, 1.706]).addTo(map); // coordenades al reves k geojson
+    L.geoJSON().addTo(map);
+      var myLayer = L.geoJSON({
+        "type": "Feature",
+        "properties": {
+            "name": "Coors Field",
+            "amenity": "Baseball Stadium"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [ 1.706, 42.240] //coordenades al reves k al marker
+        }
+      }).addTo(map);
+      //myLayer.addData(geojsonFeature);
+
+     
+    // L.geoJSON(data, {
+    //   onEachFeature: function (feature, layer) {
+    //     layer.bindPopup('<h4 class="popup">'+feature.properties.title+`</h4>
+    //       <hr class="popup">
+    //       <p class="popup"><span class="popup-description">Description: </span>`+feature.properties.body+`</p>
+    //       <p id="popupcoord">Lat: `+feature.geometry.coordinates[1]+', Long:'+
+    //       feature.geometry.coordinates[0]+'</p>'
+    //     );
+    // }
+    // }).addTo(map);
+    
+   
 
      // show your current location
     L.control.locate().addTo(map);
@@ -124,3 +187,4 @@ function  init(data) {
           }).openPopup();
    
 })}
+

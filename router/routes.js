@@ -24,7 +24,7 @@ const updatePositionsController = require('../controllers/updatePositions');
 
 
 const getUserPositionsController = require('../controllers/getUserPositions');
-
+const getMyGeojsonController = require('../controllers/getMyGeojson')
 const authMiddleware = require("../middleware/authMiddleware");
 const redirectIfAuthenticatedMiddleware =require("../middleware/redirectIfAuthenticatedMiddleware");
 
@@ -45,6 +45,8 @@ router.get('/', getPostsController); //home page get my posts
 // GET ONE 
 router.get('/position/:id', getPositionController);
 //GET USERS POST
+router.get('/geojson/user',authMiddleware, getMyGeojsonController)
+
 router.get('/positions/user/:userid', authMiddleware ,getUserPositionsController)
 //GET ALL POSTS
 router.get('/positions/all', authMiddleware, getAllPositionsController)
