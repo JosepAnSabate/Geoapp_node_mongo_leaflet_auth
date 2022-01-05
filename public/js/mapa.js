@@ -80,18 +80,44 @@ function loadMap(positionsGj) {
         }, {
           onEachFeature: function (feature, layer) {
             let dataPost = feature.properties.datePosted
-            console.log(dataPost)
-            console.log(typeof feature.properties.datePosted)
-            layer.bindPopup('<h4 class="popup">'+feature.properties.title+`</h4>
+           // console.log(dataPost)
+            let dateSliced = dataPost.split("T") // Split date by T
+           // console.log(dateaSliced)
+           // console.log(typeof feature.properties.datePosted)
+            dateSlicedByCat = dateSliced[0].split("-")
+            //console.log(dateSlicedByCat)
+            
+            console.log(feature.properties.image == null)
+
+            if (feature.properties.image) {
+
+              layer.bindPopup('<h4 class="popup">'+feature.properties.title+`</h4>
               <hr class="popup">
-              <p class="popup"><span class="popup-description">Description: </span>`+feature.properties.body+`</p>
-              <p class="popup"><span class="popup-description">Per: </span>`+feature.properties.user+
-              `<p class="popup"><span class="popup-description">Creat al: </span>`+feature.properties.datePosted+`</p>
+              <p class="popup"><span class="popup-description">Description: </span>`+feature.properties.body+`</p>` +
+              `<img src="`+ feature.properties.image+`" style="height:150px;">`+            
+              `<p class="popup"><span class="popup-description">Per: </span>`+feature.properties.user+
+              `<p class="popup"><span class="popup-description">Creat al: </span>`+
+              dateSlicedByCat[2]+ '-' + dateSlicedByCat[1] + '-' + dateSlicedByCat[0] + `</p>
               <p id="popupcoord">Lat: `+feature.geometry.coordinates[1]+', Long:'+
               feature.geometry.coordinates[0]+'</p>'
             );
             // data outside map
             //document.getElementById("stats").innerHTML = feature.properties.name
+            } else {
+              layer.bindPopup('<h4 class="popup">'+feature.properties.title+`</h4>
+              <hr class="popup">
+              <p class="popup"><span class="popup-description">Description: </span>`+feature.properties.body+`</p>` +
+              // no img
+              //`<img src="`+ feature.properties.image+`" style="height:150px;">`+
+              `<p class="popup"><span class="popup-description">Per: </span>`+feature.properties.user+
+              `<p class="popup"><span class="popup-description">Creat al: </span>`+
+              dateSlicedByCat[2]+ '-' + dateSlicedByCat[1] + '-' + dateSlicedByCat[0] + `</p>
+              <p id="popupcoord">Lat: `+feature.geometry.coordinates[1]+', Long:'+
+              feature.geometry.coordinates[0]+'</p>'
+              );
+            }
+
+            
         }
         }).addTo(map);
     }
