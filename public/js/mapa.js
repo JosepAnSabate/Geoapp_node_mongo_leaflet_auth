@@ -87,18 +87,19 @@ function loadMap(positionsGj) {
             dateSlicedByCat = dateSliced[0].split("-")
             //console.log(dateSlicedByCat)
             
-            console.log(feature.properties.image == null)
+            //console.log(feature.properties.image == null)
 
             if (feature.properties.image) {
 
               layer.bindPopup('<h4 class="popup">'+feature.properties.title+`</h4>
               <hr class="popup">
-              <p class="popup"><span class="popup-description">Description: </span>`+feature.properties.body+`</p>` +
-              `<img src="`+ feature.properties.image+`" style="height:150px;">`+            
-              `<p class="popup"><span class="popup-description">Per: </span>`+feature.properties.user+
-              `<p class="popup"><span class="popup-description">Creat al: </span>`+
-              dateSlicedByCat[2]+ '-' + dateSlicedByCat[1] + '-' + dateSlicedByCat[0] + `</p>
-              <p id="popupcoord">Lat: `+feature.geometry.coordinates[1]+', Long:'+
+              <p class="popup"><span class="popup-description">Descripció: </span>`+feature.properties.body+`</p>` +
+              `<img src="`+ feature.properties.image+`" style="width:80%;display: block; margin-left: auto; margin-right: auto;"><br>`+            
+              `<p class="popup" style="text-align: right; font-family: 'PT Serif', serif; margin-right: 15px;">`
+              +feature.properties.user+ '</p>' +
+              `<p class="popup" style="text-align: right; font-family: 'PT Serif', serif; "><span class="popup-description">`+
+              dateSlicedByCat[2]+ '-' + dateSlicedByCat[1] + '-' + dateSlicedByCat[0] + `</span></p>
+              <p id="popupcoord" style="text-align: center;">Lat: `+feature.geometry.coordinates[1]+', Long:'+
               feature.geometry.coordinates[0]+'</p>'
             );
             // data outside map
@@ -106,13 +107,13 @@ function loadMap(positionsGj) {
             } else {
               layer.bindPopup('<h4 class="popup">'+feature.properties.title+`</h4>
               <hr class="popup">
-              <p class="popup"><span class="popup-description">Description: </span>`+feature.properties.body+`</p>` +
+              <p class="popup"><span class="popup-description">Descripció: </span>`+feature.properties.body+`</p>` +
               // no img
               //`<img src="`+ feature.properties.image+`" style="height:150px;">`+
-              `<p class="popup"><span class="popup-description">Per: </span>`+feature.properties.user+
-              `<p class="popup"><span class="popup-description">Creat al: </span>`+
-              dateSlicedByCat[2]+ '-' + dateSlicedByCat[1] + '-' + dateSlicedByCat[0] + `</p>
-              <p id="popupcoord">Lat: `+feature.geometry.coordinates[1]+', Long:'+
+              `<p class="popup" style="text-align: right; font-family: 'PT Serif', serif; margin-right: 15px;">`+feature.properties.user+
+              `<p class="popup" style="text-align: right; font-family: 'PT Serif', serif;"><span class="popup-description">`+
+              dateSlicedByCat[2]+ '-' + dateSlicedByCat[1] + '-' + dateSlicedByCat[0] + `</span></p>
+              <p id="popupcoord" style="text-align: center;">Lat: `+feature.geometry.coordinates[1]+', Long: '+
               feature.geometry.coordinates[0]+'</p>'
               );
             }
@@ -140,6 +141,7 @@ function loadMap(positionsGj) {
     //   }).addTo(map);
       //myLayer.addData(geojsonFeature);
     ///////////////////////////
+
      // show your current location
     L.control.locate().addTo(map);
     // add map scale
@@ -190,22 +192,22 @@ function loadMap(positionsGj) {
     const popupContent = 
     '<form action="/positions/store" method="POST" id="myForm" class="form"  enctype="multipart/form-data">'+
       
-        '<label class="control-label col-sm-5 form-label"><b>Title: </b></label>'+
+        '<label class="control-label col-sm-5 form-label label-create-form"><b>Títol: </b></label>'+
         '<textarea class="form-control form-text" rows="1" id="title" name="title"></textarea>'+
         
-        '<label style="margin-top: 20px" class="control-label col-sm-5 form-label"><b>Description: </b></label>'+   
+        '<label style="margin-top: 20px;" class="label-create-form control-label col-sm-5 form-label"><b>Descripció: </b></label>'+   
         '<textarea class="form-control" rows="3" id="body" name="body"></textarea>'+ 
         
         '<input style="display: none;" type="text" id="lat" name="lat" value="'+coords.lat.toFixed(6)+'" />'+
         '<input style="display: none;" type="text" id="lng" name="lng" value="'+coords.lng.toFixed(6)+'" />'+
     
         
-        '<label style="margin-top: 20px" class="control-label col-sm-5 form-label"><b>Image: </b></label>'+
+        '<label style="margin-top: 20px;" class="label-create-form control-label col-sm-5 form-label"><b>Imatge: </b></label>'+
         '<input type="file" class="form-control" id="image" name="image"></input>' +
 
-        '<div style="text-align:center;" class="col-xs-4 col-xs-offset-2"><a href="/" type="button" class="btn">Cancel<a/></div>'+
+        '<div style="text-align:center; margin-top: 10px;" class="col-xs-4 col-xs-offset-2"><a href="/" type="button" class="btn">Cancel·la<a/></div>'+
         '<div style="text-align:center;" class="col-xs-4">'+
-            '<button  form="myForm" type="submit" value="submit" class="btn btn-primary trigger-submit">Submit</button>'+
+            '<button  form="myForm" type="submit" value="submit" class="btn btn-primary trigger-submit">Envia</button>'+
         '</div>'
     
     +'</form>';
@@ -215,5 +217,88 @@ function loadMap(positionsGj) {
           closeButton: false
           }).openPopup();
    
-})}
+})
 
+// Get features info from wms
+//https://flexberry.github.io/Leaflet-WMS/
+// ICGC GET CAPABILITIES:   https://geoserveis.icgc.cat/arcgis/services/geologic/icgc_mg50m/MapServer/WMSServer?request=GetCapabilities&service=WMS
+// WMS function from wms.js
+const geologic = new L.TileLayer.WMS("https://geoserveis.icgc.cat/arcgis/services/geologic/icgc_mg50m/MapServer/WMSServer?", {
+  layers: 'UGEO_PA',
+  format: 'image/png',
+// crs: crs25831,
+  transparent: true,
+  continuousWorld: true,
+  version: '1.3.0',
+  attribution: 'Institut Cartogràfic i Geològic de Catalunya',
+}).addTo(map);
+// Perform 'GetFeatureInfo' request.
+map.on('click', function(e) {
+  geologic.getFeatureInfo({
+    latlng: e.latlng,
+    done: function(featureCollection) {
+    //console.log('getFeatureInfosucceed: ', featureCollection);
+    //console.log(featureCollection.features[0].properties);
+    //console.log(featureCollection.features[0].properties.DESCRIPCIO)
+    let codi = featureCollection.features[0].properties.CODI_CAS;
+    let clasLito = featureCollection.features[0].properties.ClasLitoEd;
+    let descripcio = featureCollection.features[0].properties.DESCRIPCIO;
+    let epoca = featureCollection.features[0].properties.EPOCA;
+    let era = featureCollection.features[0].properties.ERA;
+    let periode = featureCollection.features[0].properties.PERIODE;
+    $('.geologicDescription').html(`
+    
+    <table class="table">
+    <tbody>
+      <tr>
+        <th scope="row">Codi:</th>
+        <td class="leftTabEl">${codi}</td>
+      </tr>
+      <tr>
+        <th scope="row">Classificació litològica: </th>
+        <td class="leftTabEl">${clasLito}</td>
+      </tr>
+      <tr>
+      <th scope="row">Descripció: </th>
+      <td class="leftTabEl">${descripcio}</td>
+    </tr>
+    <tr>
+      <th scope="row">Època: </th>
+      <td class="leftTabEl">${epoca}</td>
+    </tr>
+    <tr>
+      <th scope="row">Era: </th>
+      <td class="leftTabEl">${era}</td>
+    </tr>
+    <tr>
+      <th scope="row">Període: </th>
+      <td class="leftTabEl">${periode}</td>
+    </tr>
+    </tbody>
+    </table>
+    `)
+  },
+  fail: function(errorThrown) {
+    console.log('getFeatureInfo failed: ', errorThrown);
+  },
+  always: function() {
+      console.log('getFeatureInfo finished');
+  }
+  });
+});
+
+
+// Perform 'GetCapabilities' request.
+geologic.getCapabilities({
+  done: function(capabilities) {
+  console.log('getCapabilitiessucceed: ', capabilities);
+  },
+  fail: function(errorThrown) {
+  console.log('getCapabilitiesfailed: ', errorThrown);
+  },
+  always: function() {
+  console.log('getCapabilitiesfinished');
+  }
+});
+
+}

@@ -98,6 +98,58 @@ body {
     display: flex;
   }
 }
+/* Form mapa post */
+.label-create-form {
+  font-size: .95rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+/* coordenades ratoli */
+#coordenades {     
+  display: block;
+  position: relative;
+  margin: 0px auto;
+  width: 40%;
+  min-width: 350px;
+  padding: 5px;
+  border: none;
+  border-radius: 7px;
+  font-size: 20px;
+  font-family: 'PT Serif', serif;
+  text-align: center;
+  color: #000;
+  /* background: #D6EAF8; */
+  margin-top: 7px;
+}
+
+/* popup */
+h4.popup {
+  font-size: 2.1em;
+  font-weight: 500;
+  margin-bottom: 0;
+  text-align: center;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+p.popup {
+  margin: 8px 0px;
+  font-size: 1.3em;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-weight: 300;
+}
+
+.popup-description{
+  font-size: 1em;
+  font-weight: 550;
+}
+
+#popupcoord  {
+  margin-top: 16px;
+  font-size: 1.4em;
+  font-family: 'PT Serif', serif;
+}
+hr.popup{
+  margin-top: 0.1px;
+}
 
 
 /* /////////////////////////////
@@ -161,4 +213,17 @@ body {
 .title-logo{
   font-weight:500;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* forms login register */
+.control-group {
+  max-width: 500px;
+}
+.list-group {
+  max-width: 500px;
+}
+
+.label-forms {
+  margin-top: 0.8rem;
+  margin-bottom: 0.3rem;  
 }
