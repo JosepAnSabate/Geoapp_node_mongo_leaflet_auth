@@ -39,7 +39,7 @@ function  init(data) {
      // map create new arrays from other arrays
      const positionsGj = data.map(position => {
       // console.log("HOLA X 5")
-       //console.log(position.title)
+       //console.log(position)
       return {
           type: 'Feature',
           geometry: {
@@ -51,7 +51,8 @@ function  init(data) {
             body: position.body,
             datePosted: position.datePosted,
             user: position.userid.username,
-            image: position.image
+            image: position.image,
+            id: position._id
           }
       }
   });
@@ -85,13 +86,13 @@ function loadMap(positionsGj) {
            // console.log(dateaSliced)
            // console.log(typeof feature.properties.datePosted)
             dateSlicedByCat = dateSliced[0].split("-")
-            //console.log(dateSlicedByCat)
+           // console.log(dateSlicedByCat)
             
             //console.log(feature.properties.image == null)
-
+            //console.log(feature.properties)
             if (feature.properties.image) {
 
-              layer.bindPopup('<h4 class="popup">'+feature.properties.title+`</h4>
+              layer.bindPopup('<a href="/position/' + feature.properties.id +'"><h4 class="popup">'+feature.properties.title+`</h4></a>
               <hr class="popup">
               <p class="popup"><span class="popup-description">Descripció: </span>`+feature.properties.body+`</p>` +
               `<img src="`+ feature.properties.image+`" style="width:80%;display: block; margin-left: auto; margin-right: auto;"><br>`+            
@@ -105,7 +106,7 @@ function loadMap(positionsGj) {
             // data outside map
             //document.getElementById("stats").innerHTML = feature.properties.name
             } else {
-              layer.bindPopup('<h4 class="popup">'+feature.properties.title+`</h4>
+              layer.bindPopup('<a href="/position/' + feature.properties.id +'"><h4 class="popup">'+feature.properties.title+`</h4></a>
               <hr class="popup">
               <p class="popup"><span class="popup-description">Descripció: </span>`+feature.properties.body+`</p>` +
               // no img

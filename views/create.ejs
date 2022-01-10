@@ -8,32 +8,45 @@
     <!-- Main Content, el fetch el haig des del form -->
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">   
-        <h2>Create new post</h2>     
+      <div class="col-lg-6 col-md-10 mx-auto">   
+        <br>
+        <br>
+        <h2 style="text-align: center;">Crea una posició insertant les coordenades</h2>     
+        <br>
         <form action="/positions/store" method="POST" enctype="multipart/form-data">                                                 
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
-                <label>Title</label>
-                <input type="text" class="form-control" placeholder="Title" id="title" name="title">  
-                            <!-- name from model -->
+                <label class="label-forms">Títol</label>
+                <input type="text" class="form-control" placeholder="Títol" id="title" name="title">  
+                            <!-- name user comes from model -->
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
-                <label>Description</label>
-                <textarea rows="5" class="form-control" id="body" name="body"></textarea>
+                <label class="label-forms">Descripció</label>
+                <textarea rows="5" placeholder="Descripció" class="form-control" id="body" name="body"></textarea>
                 <!-- <p class="help-block text-danger"></p> -->
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
-                <label>Image</label>
+                <label class="label-forms">Imatge</label>
                 <input type="file" class="form-control" id="image" name="image">              
               </div>
-            </div>         
+            </div>       
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label class="label-forms">Coordenades</label>
+                <textarea rows="1" placeholder="Longitud" class="form-control" id="lng" name="lng"></textarea>
+                <textarea rows="1" placeholder="Latitud" class="form-control" id="lat" name="lat"></textarea>
+                
+                <!-- <p class="help-block text-danger"></p> -->
+              </div>
+            </div>
             <br>
-            <div id="success"></div>
-            <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+            <div id="success" class="d-flex justify-content-end" style="max-width: 500px;">
+            <button type="submit" class="btn btn-primary" id="sendMessageButton" style="padding: 6px 20px; margin-right: 15px;">Crear</button>
+           </div>
             <!-- type="submit" sent the form -->
         </form>
       </div>

@@ -9,21 +9,23 @@
   <pre class="coordinate" id="coordenades"></pre>
   <br>
   <pre class="geologicDescription" id="geologicDescription">Clica al mapa per obtenir descripcions litològiques.</pre>
-
+  <br><br>
  <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <% for (var i = 0; i < blogposts.length; i++){ %>
+       
+        <% for (var i = 0; i < blogposts.length; i++){ %>  
           <div class="post-preview">
             <a href="/position/<%= blogposts[i]._id%>">
-              <h2 class="post-title">
+              <h2 style="text-align:left;float:left;" class="post-title">
                 <%= blogposts[i].title %>
               </h2>
-              <h3 class="post-subtitle">
+              <h3 style="text-align:right;float:right;" class="post-subtitle">
                 <%= blogposts[i].body %>
               </h3>
+              <hr style="clear:both; opacity: 0;"/>
             </a> 
-            <p class="post-meta">
+            <p class="post-meta" style=" text-align: right;">
              Creat per <%= blogposts[i].userid.username %> al <%= blogposts[i].datePosted.toDateString() %></p>     
           </div>
           <hr>
