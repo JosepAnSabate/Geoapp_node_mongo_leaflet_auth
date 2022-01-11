@@ -3,7 +3,8 @@ function  init(data) {
       // drawControl: true, // draw tools, more down
       center: [41.6863, 1.6382],
       zoom: 8,
-      attribution: 'Institut Cartogràfic i Geològic de Catalunya CC-BY-SA-3'
+      //attribution: 'Institut Cartogràfic i Geològic de Catalunya CC-BY-SA-3'
+      tap: false //mobile popup
     });
     const topoMonICGC = L.tileLayer('https://geoserveis.icgc.cat/styles/icgc/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -13,15 +14,28 @@ function  init(data) {
       maxZoom: 14,
      // attribution: 'Institut Cartogràfic i Geològic de Catalunya CC-BY-SA-3'
     });
-    
-    const ortoICGC =
+    const ortoICGC = L.tileLayer('https://geoserveis.icgc.cat/icc_mapesmultibase/noutm/wmts/orto/GRID3857/{z}/{x}/{y}.png', {
+        maxZoom: 19
+       });
+    // composicio hibrida
+    const ortoHibridaICGC = L.tileLayer( 'https://tilemaps.icgc.cat/mapfactory/wmts/hibrida_total/CAT3857/{z}/{x}/{y}.png', {
+        maxZoom: 18
+      });
+      const ortoICGC_H =
       L.tileLayer('https://geoserveis.icgc.cat/icc_mapesmultibase/noutm/wmts/orto/GRID3857/{z}/{x}/{y}.png', {
         maxZoom: 19,
-       // attribution: //'Institut Cartogràfic i Geològic de Catalunya CC-BY-SA-3'
+       // attribution: 'Institut Cartogràfic i Geològic de Catalunya CC-BY-SA-3'
       });
+      const toponimICGC = L.tileLayer('https://tilemaps.icgc.cat/mapfactory/wmts/toponimia/CAT3857/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+      //  attribution: 'Institut Cartogràfic i Geològic de Catalunya CC-BY-SA-3'
+      });
+      const hibrida = L.layerGroup([ortoICGC_H, ortoHibridaICGC,toponimICGC]);
+      
       const mapaBase = {
         'Topogràfic': topoMonICGC,
         'Ortofoto': ortoICGC,
+        'Orto Híbrida': hibrida,
         'Geològic': geologicICGC,
       };
       controlCapes = L.control.layers(mapaBase, null, {collapsed: false});
@@ -228,6 +242,7 @@ const geologic = new L.TileLayer.WMS("https://geoserveis.icgc.cat/arcgis/service
   layers: 'UGEO_PA',
   format: 'image/png',
 // crs: crs25831,
+ maxZoom: 7, // pèr a no mostrarse
   transparent: true,
   continuousWorld: true,
   version: '1.3.0',
