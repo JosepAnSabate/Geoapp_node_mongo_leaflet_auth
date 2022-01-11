@@ -1,4 +1,4 @@
-# Basic-architecture-Rest-api-with-express-session-authentification
+# Geo-app 2.0
 
 ## Node.js-Express-EJS-Mongodb Rest api with user authentification using express session.
 
@@ -22,6 +22,6 @@ Delete one postition     http://localhost:5000/positions/delete/:id
 Update one positions     http://localhost:5000/positions/update/:id
 
 # Database (development, Mongodb Compass)
-mydatabase
+mygeodatabase
 ```
 <br>
