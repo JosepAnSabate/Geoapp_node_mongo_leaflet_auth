@@ -3,7 +3,7 @@
 ## Node.js-Express-EJS-Mongodb Rest api with user authentification using express session.
 
 
-The db can manage images.
+* Geo-app 2.0 allows the user to create edit and delete their own locations, descriptions and images on a geological,  orthographic and topographic maps being able to consult the geologic description from the ICGC WMS using GetFeatureInfo. 
 
 
 ```bash
@@ -25,3 +25,14 @@ Update one positions     http://localhost:5000/positions/update/:id
 mygeodatabase
 ```
 <br>
+
+<br>
+
+Geologic WMS for GetFeatuesInfo: https://geoserveis.icgc.cat/arcgis/services/geologic/icgc_mg50m/MapServer/WMSServer? <br>
+
+Source: [https://www.icgc.cat/Administracio-i-empresa/Serveis/Geologia/WMS-Cartografia-geologica](https://www.icgc.cat/Administracio-i-empresa/Serveis/Geologia/WMS-Cartografia-geologica)
+
+<p align="center">
+<img   src="./img/appmapa.PNG">
+<img   src="./img/desc.PNG">
+</p>
