@@ -36,3 +36,6 @@ Source: [https://www.icgc.cat/Administracio-i-empresa/Serveis/Geologia/WMS-Carto
 <img   src="./img/appmapa.PNG">
 <img   src="./img/desc.PNG">
 </p>
+
+
+mongodb atlas user permissions: danc 123

@@ -5,15 +5,14 @@
 
  <!-- Main Content -->
  <main>
-  <div id="map" style="width: 100%; height: 600px; border-radius: 5px;"> </div> 
+  <div id="map"  class="map"> </div> 
   <pre class="coordinate" id="coordenades"></pre>
   <br>
   <pre class="geologicDescription" id="geologicDescription">Clica al mapa per obtenir descripcions litològiques.</pre>
   <br><br>
  <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-       
+      <div class="col-lg-8 col-md-10 mx-auto">       
         <% for (var i = 0; i < blogposts.length; i++){ %>  
           <div class="post-preview">
             <a href="/position/<%= blogposts[i]._id%>">

@@ -7,6 +7,8 @@ const fileUpload = require('express-fileupload');
 const expressSession = require('express-session');
 const flash = require('connect-flash'); //flashing error message from session
 const cors = require('cors')
+// db
+const connectDB = require("./config/db")
 // load enviornment variables
 const dotenv = require("dotenv");
 dotenv.config({ path: './config/config.env'});
@@ -19,17 +21,25 @@ const storePositionsController = require('./controllers/storePositions');
 const authMiddleware = require("./middleware/authMiddleware");
 const redirectIfAuthenticatedMiddleware =require("./middleware/redirectIfAuthenticatedMiddleware");
 
-
-mongoose.connect('mongodb://localhost/mygeodatabase', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true })
+// Connect to db
+connectDB()
     .then(() => console.log('DataBase connected'))
     .catch(e => console.log(e))
 
-//listen errors on connection
-mongoose.connection.on('error', err => {
-    console.log(err)
-});
+// mongo older connection, for atlas and compass
+// mongoose.connect(
+//     'mongodb+srv://danc:123@geoapp.rsxlk.mongodb.net/test'
+// // mongodb://localhost/mygeodatabase' //local mongocompass
+// , {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true })
+//     .then(() => console.log('DataBase connected'))
+//     .catch(e => console.log(e))
+
+// //listen errors on connection
+// mongoose.connection.on('error', err => {
+//     console.log(err)
+// });
 
 app.set('view engine', 'ejs');
 
