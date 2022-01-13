@@ -5,8 +5,9 @@
 
 * Geo-app 2.0 allows the user to create edit and delete their own locations, descriptions and images on a geological,  orthographic and topographic maps being able to consult the geologic description from the ICGC WMS using GetFeatureInfo. Deployed on AWS.
 
-[www.geoatles.cat](www.geoatles.cat)
-[geoatles.cat](geoatles.cat)
+[https://www.geoatles.cat/auth/login](https://www.geoatles.cat/auth/login)
+
+[https://geoatles.cat/](https://geoatles.cat/auth/login)
 
 ```bash
 # Server on localhost:5000
