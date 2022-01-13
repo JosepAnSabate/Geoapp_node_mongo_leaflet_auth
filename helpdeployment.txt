@@ -1,0 +1,84 @@
+AWS EC2 y Route 53: Desplegando una aplicación web con dominio y certificado SSL en servidor NGINX
+1_Launch instance
+
+C:\Users\34639\Desktop\aws>ssh -i cursa.pem ubuntu@52.48.64.218(Public IPv4 address
+2
+sudo apt update && sudo apt upgrade -y
+
+3. Copy github repo to sever
+cd ~
+mkdir apps
+cd apps
+mkdir geoapp-app
+cd geoapp-app
+git clone https://github.com/JosepAnSabate/Geoapp_node_mongo_leaflet_auth.git
+ls
+cd 
+
+4. Install Node
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+npm install
+
+5. Install and Configure PM2
+sudo npm install pm2 -g
+pm2 start server.js --name geoapp2
+pm2 startup
+ i paste the command
+pm2 save
+
+http://52.48.64.218:5000/
+
+6.react................
+
+7.a) route 53, create hosted zones
+dns des de SWPanel
+create record r53
+
+7.Install and Configure NGINX
+sudo apt install nginx -y
+sudo systemctl enable nginx
+systemctl status nginx
+
+ves a http://52.48.64.218  welcome to nginx
+
+cd /etc/nginx/sites-available
+sudo cp default geoatles.cat
+sudo vi geoatles.cat
+
+server {
+        listen 80;
+        listen [::]:80;
+
+        server_name geoatles.cat www.geoatles.cat;
+
+        location / {
+                proxy_pass http://localhost:5000/;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host $http_host;
+                proxy_cache_bypass $http_upgrade;
+        }
+}
+esc i :wq per sortir
+
+sudo nginx -t per si esta tot ok
+cd
+
+sudo ln -s /etc/nginx/sites-available/geoatles.cat /etc/nginx/sites-enabled/geoatles.cat
+sudo nginx -t
+
+reiniciar amb
+sudo service nginx restart
+sudo service nginx status
+
+i la web ja esta disponible
+
+8_https
+sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d geoatles.cat -d www.geoatles.cat
+
+2    per https
+renovar cada 3 mesos amb un comando
+

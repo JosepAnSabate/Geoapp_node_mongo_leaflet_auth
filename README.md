@@ -5,6 +5,8 @@
 
 * Geo-app 2.0 allows the user to create edit and delete their own locations, descriptions and images on a geological,  orthographic and topographic maps being able to consult the geologic description from the ICGC WMS using GetFeatureInfo. 
 
+[www.geoatles.cat](www.geoatles.cat)
+[geoatles.cat](geoatles.cat)
 
 ```bash
 # Server on localhost:5000
@@ -33,8 +35,9 @@ Geologic WMS for GetFeatuesInfo: https://geoserveis.icgc.cat/arcgis/services/geo
 Source: [https://www.icgc.cat/Administracio-i-empresa/Serveis/Geologia/WMS-Cartografia-geologica](https://www.icgc.cat/Administracio-i-empresa/Serveis/Geologia/WMS-Cartografia-geologica)
 
 <p align="center">
-<img   src="./img/appmapa.PNG">
-<img   src="./img/desc.PNG">
+<img   src="./img_github/mapa-popup.PNG">
+<img   src="./img_github/post.PNG">
+<img   src="./img_github/mobil.PNG">
 </p>
 
 
