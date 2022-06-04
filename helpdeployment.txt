@@ -82,3 +82,7 @@ sudo certbot --nginx -d geoatles.cat -d www.geoatles.cat
 2    per https
 renovar cada 3 mesos amb un comando
 
+
+
+UPDATE:
+pm2 restart id
